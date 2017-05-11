@@ -17,4 +17,7 @@ public class NPCScript : MonoBehaviour {
         transform.LookAt(player);
 
 	}
+
+
+
 }

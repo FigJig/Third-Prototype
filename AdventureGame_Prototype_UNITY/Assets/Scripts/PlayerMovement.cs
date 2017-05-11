@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour {
     [Range(1, 20)]
     private float speed = 10;
 
+    public GameObject movePoint;
+
     private Vector3 targetPosition;
     private bool isMoving;
 
@@ -25,7 +27,29 @@ public class PlayerMovement : MonoBehaviour {
 
         if (isMoving)
             MovePlayer();
+
 	}
+
+    void OnTriggerEnter (Collider other)
+    {
+        if (other.gameObject.tag == "MovePoint")
+        {
+            GameObject[] movePoints = GameObject.FindGameObjectsWithTag("MovePoint");
+            foreach (GameObject mP in movePoints)
+                Destroy(mP);
+            //Debug.Log("Hit");
+        }
+
+        if (other.gameObject.tag == "Wall")
+        {
+            isMoving = false;
+        }
+
+        if (other.gameObject.tag == "NPC")
+        {
+            isMoving = false;
+        }
+    }
 
     void SetTargetPosition()
     {
@@ -34,7 +58,13 @@ public class PlayerMovement : MonoBehaviour {
         float point = 0f;
 
         if (plane.Raycast(ray, out point))
+        {
             targetPosition = ray.GetPoint(point);
+            GameObject[] movePoints = GameObject.FindGameObjectsWithTag("MovePoint");
+            foreach (GameObject mP in movePoints)
+                Destroy(mP);
+            Instantiate(movePoint, targetPosition, Quaternion.identity);
+        }
 
         isMoving = true;
     }

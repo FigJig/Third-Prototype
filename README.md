@@ -1,5 +1,4 @@
-# Second-Prototype
-MIDI controller game
+# Third Prototype
 
 Download GitHub Desktop, make a profile.
 

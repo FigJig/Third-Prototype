@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     [Range(1, 20)]
     private float speed = 10;
+
+    NavMeshAgent nav;
 
     public GameObject movePoint;
 
@@ -18,7 +21,8 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         targetPosition = transform.position;
         isMoving = false;
-	}
+        nav = GetComponent<NavMeshAgent>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -72,7 +76,8 @@ public class PlayerMovement : MonoBehaviour {
     void MovePlayer()
     {
         transform.LookAt(targetPosition);
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        nav.SetDestination(targetPosition);
+        //transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
         if (transform.position == targetPosition)
             isMoving = false;

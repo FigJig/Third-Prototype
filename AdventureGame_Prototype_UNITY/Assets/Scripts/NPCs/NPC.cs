@@ -23,8 +23,8 @@ public class NPC : Interactable {
 
     void Awake ()
     {
-        giveButton = npcDialogue.transform.FindChild("Buttons").GetChild(0).GetComponent<Button>();
-        declineButton = npcDialogue.transform.FindChild("Buttons").GetChild(1).GetComponent<Button>();
+        giveButton = npcDialogue.transform.Find("Buttons").GetChild(0).GetComponent<Button>();
+        declineButton = npcDialogue.transform.Find("Buttons").GetChild(1).GetComponent<Button>();
 
         giveButton.onClick.AddListener(delegate { GiveMoney(); });
         declineButton.onClick.AddListener(delegate { DeclineGiveMoney(); });

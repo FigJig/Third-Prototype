@@ -8,12 +8,12 @@ public class TextAnimControl : MonoBehaviour {
 
     public void Activate()
     {
-        npcDialogue.transform.FindChild("Buttons").GetComponent<Animator>().Play("EyeLevel_FadeInButtons");
+        npcDialogue.transform.Find("Buttons").GetComponent<Animator>().Play("EyeLevel_FadeInButtons");
     }
 
     public void FadeOutButtons()
     {
-        npcDialogue.transform.FindChild("Buttons").GetComponent<Animator>().Play("EyeLevel_FadeOutButtons");
+        npcDialogue.transform.Find("Buttons").GetComponent<Animator>().Play("EyeLevel_FadeOutButtons");
     }
 
 

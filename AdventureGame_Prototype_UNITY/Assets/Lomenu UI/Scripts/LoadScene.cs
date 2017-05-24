@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
+
 	// public float interval;
 	// if(interval > 0)
 	// 		{

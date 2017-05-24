@@ -10,22 +10,34 @@ public class ObjectDrag : MonoBehaviour {
     private Vector3 itemSlotPos;
     public bool itemSlotFound;
 
+    public Transform originPos;
     public Text text;
     public string itemText;
+
+    GameObject itemSpot;
+    public GameObject suitcase;
 
     void Start()
     {
         itemSlotFound = false;
+        suitcase.gameObject.GetComponent<PackingControlScript>();
+
     }
 
     // Use this for initialization
     void OnMouseDown()
     {
-        itemSlotFound = false;
+      
         Debug.Log("Interactable object hit");
         //gameObject.GetComponent<BoxCollider>().isTrigger = false;
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+        if (itemSlotFound == true)
+        {
+            itemSpot.gameObject.GetComponent<BoxCollider>().enabled = true;
+        }
+        itemSlotFound = false;
     }
 
     void OnMouseDrag()
@@ -40,15 +52,18 @@ public class ObjectDrag : MonoBehaviour {
         //gameObject.GetComponent<BoxCollider>().isTrigger = true;
         if (itemSlotFound == false)
         {
-            Vector3 position = transform.position;
-            position.y -= 5;
-            transform.position = position;
+            //Vector3 position = transform.position;
+           // position.y -= 5;
+            transform.position = originPos.position;
         }
 
         if (itemSlotFound == true)
         {
             transform.position = itemSlotPos;
             text.gameObject.GetComponent<Text>().text = itemText;
+           // itemSpot.gameObject.tag = "ItemPlaced";
+            itemSpot.gameObject.GetComponent<BoxCollider>().enabled = false;
+            
         }
     }
 
@@ -57,8 +72,10 @@ public class ObjectDrag : MonoBehaviour {
         if (other.gameObject.tag == "ItemSlot")
         {
             Debug.Log("In item slot");
-            Vector3 itemSlotPos = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
+            itemSlotPos = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
             itemSlotFound = true;
+            other.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            itemSpot = other.gameObject;
         }
     }
 
@@ -69,6 +86,8 @@ public class ObjectDrag : MonoBehaviour {
             itemSlotFound = false;
             Debug.Log("In item slot");
             transform.position = other.transform.position;
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+           // itemSpot = null;
         }
     }
 }

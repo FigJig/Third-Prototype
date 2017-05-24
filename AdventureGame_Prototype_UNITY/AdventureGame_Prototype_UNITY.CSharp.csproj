@@ -154,8 +154,13 @@
     <Compile Include="Assets\Scripts\DragAndDrop.cs" />
     <Compile Include="Assets\Scripts\EyeAnimScript.cs" />
     <Compile Include="Assets\Scripts\EyeRoomIntro.cs" />
+    <Compile Include="Assets\Scripts\FadeAudio.cs" />
+    <Compile Include="Assets\Scripts\FadeInOutImage.cs" />
+    <Compile Include="Assets\Scripts\FadeOutAudio.cs" />
+    <Compile Include="Assets\Scripts\FlashingImage.cs" />
     <Compile Include="Assets\Scripts\GeneralFunctions.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
+    <Compile Include="Assets\Scripts\ItemSlotScript.cs" />
     <Compile Include="Assets\Scripts\MoveObject.cs" />
     <Compile Include="Assets\Scripts\MovePlayerObject.cs" />
     <Compile Include="Assets\Scripts\MovePointScript.cs" />
@@ -163,6 +168,7 @@
     <Compile Include="Assets\Scripts\NPCs\NPCInteractionControl.cs" />
     <Compile Include="Assets\Scripts\NPCs\NPCScript.cs" />
     <Compile Include="Assets\Scripts\ObjectDrag.cs" />
+    <Compile Include="Assets\Scripts\PackingControlScript.cs" />
     <Compile Include="Assets\Scripts\PickUpItems\PickUpItem.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\TextAnimControl.cs" />

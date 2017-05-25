@@ -7,6 +7,7 @@ public class Interactable : MonoBehaviour {
 
     public NavMeshAgent playerAgent;
     private bool hasInteracted;
+    public Animator playerAnim;
 
 	public virtual void MoveToInteraction (NavMeshAgent playerAgent)
     {

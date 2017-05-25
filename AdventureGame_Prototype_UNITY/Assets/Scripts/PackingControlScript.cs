@@ -11,12 +11,15 @@ public class PackingControlScript : MonoBehaviour {
     public GameObject closeSuitcase;
     public GameObject flashingImages;
     public GameObject mainCanvas;
+    public AudioClip suitcaseClosing; 
 
     Animator suitcaseAnim;
+    AudioSource suitcaseAS;
 
 	// Use this for initialization
 	void Start () {
         suitcaseAnim = gameObject.GetComponent<Animator>();
+        suitcaseAS = gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -99,5 +102,11 @@ public class PackingControlScript : MonoBehaviour {
         suitcaseAnim.Play("Suitcase_Closing");
         mainCanvas.SetActive(true);
         mainCanvas.gameObject.GetComponent<FadeInOutImage>().fadeOutFinish = true;
+    }
+
+    public void SuitcaseAudio()
+    {
+        suitcaseAS.clip = suitcaseClosing;
+        suitcaseAS.PlayOneShot(suitcaseAS.clip);
     }
 }

@@ -40,6 +40,8 @@ public class WorldInteraction : MonoBehaviour {
                 Instantiate(movePoint, interactionInfo.point, Quaternion.identity);
                
                 interactedObject.GetComponent<Interactable>().MoveToInteraction(playerAgent);
+
+    
             }
 
             if (interactedObject.tag == "Wall")
@@ -49,6 +51,7 @@ public class WorldInteraction : MonoBehaviour {
                 GameObject[] movePoints = GameObject.FindGameObjectsWithTag("MovePoint");
                 foreach (GameObject mP in movePoints)
                     Destroy(mP);
+               // playerAnim.gameObject.GetComponent<Animator>().Play("Walking");
             }
 
             if (interactedObject.tag == "Ground")
@@ -61,6 +64,7 @@ public class WorldInteraction : MonoBehaviour {
                 foreach (GameObject mP in movePoints)
                     Destroy(mP);
                 Instantiate(movePoint, interactionInfo.point, Quaternion.identity);
+    
             }
         }
     }

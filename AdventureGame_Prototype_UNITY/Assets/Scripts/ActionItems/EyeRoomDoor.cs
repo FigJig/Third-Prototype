@@ -11,7 +11,7 @@ public class EyeRoomDoor : ActionItem {
 
     public override void Interact()
     {
-        base.Interact();
+        //base.Interact();
         Debug.Log("Door used");
         BGM.gameObject.GetComponent<FadeOutAudio>().fadeOutAudio = true;
         eyeLidsAnim.gameObject.GetComponent<Animator>().enabled = true;

@@ -14,6 +14,9 @@ public class ObjectDrag : MonoBehaviour {
     public Text text;
     public string itemText;
 
+    public AudioSource sceneAS;
+    public AudioClip itemSound;
+
     GameObject itemSpot;
     public GameObject suitcase;
 
@@ -63,7 +66,9 @@ public class ObjectDrag : MonoBehaviour {
             text.gameObject.GetComponent<Text>().text = itemText;
            // itemSpot.gameObject.tag = "ItemPlaced";
             itemSpot.gameObject.GetComponent<BoxCollider>().enabled = false;
-            
+            sceneAS.gameObject.GetComponent<AudioSource>().clip = itemSound;
+            sceneAS.gameObject.GetComponent<AudioSource>().PlayOneShot(sceneAS.gameObject.GetComponent<AudioSource>().clip);
+
         }
     }
 

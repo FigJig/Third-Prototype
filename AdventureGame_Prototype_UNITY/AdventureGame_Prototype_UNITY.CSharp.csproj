@@ -150,6 +150,8 @@
     <Compile Include="Assets\Scripts\ActionItems\ActionItem.cs" />
     <Compile Include="Assets\Scripts\ActionItems\EyeRoomDoor.cs" />
     <Compile Include="Assets\Scripts\ActionItems\RotatePlayer.cs" />
+    <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
+    <Compile Include="Assets\Scripts\ChangeCamMount.cs" />
     <Compile Include="Assets\Scripts\DialogueSystem.cs" />
     <Compile Include="Assets\Scripts\DragAndDrop.cs" />
     <Compile Include="Assets\Scripts\EyeAnimScript.cs" />

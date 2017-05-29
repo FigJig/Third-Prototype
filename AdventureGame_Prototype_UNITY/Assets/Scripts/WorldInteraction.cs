@@ -7,11 +7,14 @@ public class WorldInteraction : MonoBehaviour {
 
     public GameObject movePoint;
 
+    Animator playerAnim;
     NavMeshAgent playerAgent;
+
 
 	// Use this for initialization
 	void Start () {
         playerAgent = GetComponent<NavMeshAgent>();
+        playerAnim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -20,6 +23,12 @@ public class WorldInteraction : MonoBehaviour {
         {
             GetInteraction();
         }
+
+        if (playerAgent.remainingDistance == 0)
+        {
+            playerAnim.Play("Idle");
+        }
+
     }
 
     void GetInteraction()
@@ -30,8 +39,8 @@ public class WorldInteraction : MonoBehaviour {
         if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
         {
             GameObject interactedObject = interactionInfo.collider.gameObject;
-
-            if(interactedObject.tag == "Interactable Object")
+          
+            if (interactedObject.tag == "Interactable Object")
             {
                 Debug.Log("Interactable object hit");
                 GameObject[] movePoints = GameObject.FindGameObjectsWithTag("MovePoint");
@@ -41,7 +50,7 @@ public class WorldInteraction : MonoBehaviour {
                
                 interactedObject.GetComponent<Interactable>().MoveToInteraction(playerAgent);
 
-    
+                playerAnim.Play("Walking");
             }
 
             if (interactedObject.tag == "Wall")
@@ -51,7 +60,7 @@ public class WorldInteraction : MonoBehaviour {
                 GameObject[] movePoints = GameObject.FindGameObjectsWithTag("MovePoint");
                 foreach (GameObject mP in movePoints)
                     Destroy(mP);
-               // playerAnim.gameObject.GetComponent<Animator>().Play("Walking");
+                playerAnim.Play("Walking");
             }
 
             if (interactedObject.tag == "Ground")
@@ -64,7 +73,7 @@ public class WorldInteraction : MonoBehaviour {
                 foreach (GameObject mP in movePoints)
                     Destroy(mP);
                 Instantiate(movePoint, interactionInfo.point, Quaternion.identity);
-    
+                playerAnim.Play("Walking");
             }
         }
     }

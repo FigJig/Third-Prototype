@@ -12,10 +12,13 @@ public class ObjectDrag : MonoBehaviour {
 
     public Transform originPos;
     public Text text;
+    public Text itemInfoText;
     public string itemText;
+    public string itemInfo;
 
     public AudioSource sceneAS;
     public AudioClip itemSound;
+    public AudioClip itemPickUp;
 
     GameObject itemSpot;
     public GameObject suitcase;
@@ -24,17 +27,27 @@ public class ObjectDrag : MonoBehaviour {
     {
         itemSlotFound = false;
         suitcase.gameObject.GetComponent<PackingControlScript>();
-
     }
 
-    // Use this for initialization
-    void OnMouseDown()
+    void OnMouseEnter()
     {
-      
-        Debug.Log("Interactable object hit");
-        //gameObject.GetComponent<BoxCollider>().isTrigger = false;
+        gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    void OnMouseExit()
+    {
+        gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = false;
+    }
+    
+    void OnMouseDown()
+    {    
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+        sceneAS.gameObject.GetComponent<AudioSource>().clip = itemPickUp;
+        sceneAS.gameObject.GetComponent<AudioSource>().PlayOneShot(sceneAS.gameObject.GetComponent<AudioSource>().clip);
+
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
         if (itemSlotFound == true)
         {
@@ -48,10 +61,12 @@ public class ObjectDrag : MonoBehaviour {
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z - 5);
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
         transform.position = curPosition;
+        
     }
 
     void OnMouseUp()
     {
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
         //gameObject.GetComponent<BoxCollider>().isTrigger = true;
         if (itemSlotFound == false)
         {
@@ -64,6 +79,7 @@ public class ObjectDrag : MonoBehaviour {
         {
             transform.position = itemSlotPos;
             text.gameObject.GetComponent<Text>().text = itemText;
+            itemInfoText.gameObject.GetComponent<Text>().text = itemInfo;
            // itemSpot.gameObject.tag = "ItemPlaced";
             itemSpot.gameObject.GetComponent<BoxCollider>().enabled = false;
             sceneAS.gameObject.GetComponent<AudioSource>().clip = itemSound;

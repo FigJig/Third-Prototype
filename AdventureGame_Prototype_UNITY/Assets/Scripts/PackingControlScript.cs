@@ -11,7 +11,12 @@ public class PackingControlScript : MonoBehaviour {
     public GameObject closeSuitcase;
     public GameObject flashingImages;
     public GameObject mainCanvas;
-    public AudioClip suitcaseClosing; 
+    public AudioClip suitcaseClosing;
+
+    public Text text;
+    public Text suitcaseText;
+
+    public bool moneyPlaced;
 
     Animator suitcaseAnim;
     AudioSource suitcaseAS;
@@ -25,7 +30,7 @@ public class PackingControlScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-        if (itemsPacked[0] == true & itemsPacked[1] == true & itemsPacked[2] == true & itemsPacked[3] == true & itemsPacked[4] == true & itemsPacked[5] == true)
+        if (itemsPacked[0] == true & itemsPacked[1] == true & itemsPacked[2] == true & itemsPacked[3] == true & itemsPacked[4] == true & itemsPacked[5] == true & moneyPlaced == true)
         {
             closeSuitcase.SetActive(true);
         }
@@ -93,6 +98,12 @@ public class PackingControlScript : MonoBehaviour {
         if (itemSlot[5].gameObject.GetComponent<BoxCollider>().enabled == true)
         {
             itemsPacked[5] = false;
+        }
+
+        if (itemsPacked[0] == true & itemsPacked[1] == true & itemsPacked[2] == true & itemsPacked[3] == true & itemsPacked[4] == true & itemsPacked[5] == true & moneyPlaced == false)
+        {
+            suitcaseText.gameObject.GetComponent<Text>().text = "CAN'T GO";
+            text.gameObject.GetComponent<Text>().text = "I NEED THE MONEY WITH ME.";
         }
     }
 

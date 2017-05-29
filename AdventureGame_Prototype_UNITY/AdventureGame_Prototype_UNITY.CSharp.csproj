@@ -161,6 +161,7 @@
     <Compile Include="Assets\Scripts\GeneralFunctions.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\ItemSlotScript.cs" />
+    <Compile Include="Assets\Scripts\MoneyScript.cs" />
     <Compile Include="Assets\Scripts\MoveObject.cs" />
     <Compile Include="Assets\Scripts\MovePlayerObject.cs" />
     <Compile Include="Assets\Scripts\MovePointScript.cs" />

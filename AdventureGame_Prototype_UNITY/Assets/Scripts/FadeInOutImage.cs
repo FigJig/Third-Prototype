@@ -46,7 +46,7 @@ public class FadeInOutImage : MonoBehaviour {
 
             if (fadeInOut_c.a >= 1f)
             {
-                SceneManager.LoadScene("EyeRoomScene");
+                SceneManager.LoadScene("CorridorScene");
             }
         }
     }
